@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPIEFSample.Data;
@@ -11,10 +10,12 @@ using WebAPIEFSample.Models;
 using Newtonsoft.Json;
 using System.Text;
 using System.Net.Http.Headers;
+using System.Web.Http.Cors;
 
 namespace WebAPIEFSample.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -46,7 +47,7 @@ namespace WebAPIEFSample.Controllers
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
-                return null;
+                return NotFound();
             }
 
         }
@@ -63,34 +64,30 @@ namespace WebAPIEFSample.Controllers
                 string responseBody = await response.Content.ReadAsStringAsync();
                 Book book = JsonConvert.DeserializeObject<Book>(responseBody);
 
-                if (book == null)
-                {
-                    return NotFound();
-                }
-
                 return book;
             }
-            catch
+            catch (HttpRequestException e)
             {
-                return NoContent();
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+                return NotFound();
             }
         }
         // POST: api/Books
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook(int id, string title, int pagecount, string excerpt, DateTime publishdate)
         {
             try
             {
-                Book libro = new Book();
-                DateTime dateTime = new DateTime();
-                libro.Id = 1;
-                libro.Title = "Book 1";
-                libro.PageCount = 100;
-                libro.Excerpt = "Sadipscing accusam elitr dolores lorem";
-                libro.PublishDate = dateTime.Date;
-                HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(libro), Encoding.UTF8);
+                Book book = new Book();
+                book.Id = id;
+                book.Title = title;
+                book.PageCount = pagecount;
+                book.Excerpt = excerpt;
+                book.PublishDate = publishdate;
+                HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(book), Encoding.UTF8);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 
@@ -101,9 +98,11 @@ namespace WebAPIEFSample.Controllers
                 Book bookResponse = JsonConvert.DeserializeObject<Book>(responseBody);
                 return bookResponse;
             }
-            catch
+            catch (HttpRequestException e)
             {
-                return NoContent();
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+                return Problem();
             }
 
         }
@@ -113,29 +112,30 @@ namespace WebAPIEFSample.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutBook(Book book)
+        public async Task<ActionResult> PutBook(int id, string title, int pagecount, string excerpt, DateTime publishdate)
         {
             try
             {
-                Book libro = new Book();
-                DateTime dateTime = new DateTime();
-                libro.Id = 1;
-                libro.Title = "Book 1";
-                libro.PageCount = 100;
-                libro.Excerpt = "Sadipscing accusam elitr dolores lorem";
-                libro.PublishDate = dateTime.Date;
-                HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(libro), Encoding.UTF8);
+                Book book = new Book();
+                book.Id = id;
+                book.Title = title;
+                book.PageCount = pagecount;
+                book.Excerpt = excerpt;
+                book.PublishDate = publishdate;
+                HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(book), Encoding.UTF8);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await client.PutAsync($"https://fakerestapi.azurewebsites.net/api/v1/Books/{libro.Id}", httpContent);
+                HttpResponseMessage response = await client.PutAsync($"https://fakerestapi.azurewebsites.net/api/v1/Books/{book.Id}", httpContent);
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 return Ok();
             }
-            catch
+            catch (HttpRequestException e)
             {
-                return NoContent();
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+                return Problem();
             }
 
         }
@@ -153,17 +153,13 @@ namespace WebAPIEFSample.Controllers
 
                 return Ok(response.Content);
             }
-            catch
+            catch (HttpRequestException e)
             {
-                return NotFound();
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+                return Problem();
             }
 
-        }
-    
-
-        private bool BookExists(int id)
-        {
-            return _context.Book.Any(e => e.Id == id);
         }
     }
 }

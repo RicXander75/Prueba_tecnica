@@ -153,3 +153,15 @@ C:\Users\pc\source\repos\WebAPIEFSample\obj\Debug\netcoreapp3.1\WebAPIEFSample.c
 C:\Users\pc\source\repos\WebAPIEFSample\obj\Debug\netcoreapp3.1\WebAPIEFSample.dll
 C:\Users\pc\source\repos\WebAPIEFSample\obj\Debug\netcoreapp3.1\WebAPIEFSample.pdb
 C:\Users\pc\source\repos\WebAPIEFSample\obj\Debug\netcoreapp3.1\WebAPIEFSample.genruntimeconfig.cache
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\vbc.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\VBCSCompiler.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csc.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csi.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe.config
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\System.Web.Cors.dll
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\System.Web.Http.Cors.dll
+C:\Users\pc\source\repos\WebAPIEFSample\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
